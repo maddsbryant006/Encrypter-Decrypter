@@ -1,4 +1,4 @@
-# 3 Level Encrypt & Decrypter
+# 3 Level Encrypter & Decrypter
 Encrypt & Decrypter - User has 3 options of encryption and decryption after inputting a phrase and a key
     Level 1 - Uses only a Ceasar Cipher base on the users key selection
     Level 2 - Uses a Ceasar Cipher and Base64
