@@ -21,47 +21,56 @@ def secondary_option_print():
 
 def encode1(phrase, key): 
     #encode phrase as a ceasar cipher
-    new_phrase = CaesarCipher(phrase, offset=key)
-    print(new_phrase.encoded)
+    cipher_phrase = CaesarCipher(phrase, offset=key)
+    print(cipher_phrase.encoded)
 
 def encode2(phrase, key):
     #encode phrase as a ceasar cipher
-    new_phrase = CaesarCipher(phrase, offset=key)
-    new_phrase = new_phrase.encoded
+    cipher_phrase = CaesarCipher(phrase, offset=key)
+    cipher_phrase = cipher_phrase.encoded
 
     #encode phrase as base64
-    new_phrase = base64.b64encode(new_phrase.encode('ascii'))
-    print(new_phrase)
+    cipher_b64_phrase = base64.b64encode(cipher_phrase.encode('ascii'))
+    print(cipher_b64_phrase.encode('ascii'))
 
 def encode3(phrase, key):
     #encode phrase as a ceasar cipher
-    new_phrase = CaesarCipher(phrase, offset=key)
-    new_phrase = new_phrase.encoded
+    cipher_phrase = CaesarCipher(phrase, offset=key)
+    cipher_phrase = cipher_phrase.encoded
 
     #encode phrase as base64
-    new_phrase = base64.b64encode(new_phrase.encode('ascii'))
+    cipher_b64_phrase = base64.b64encode(cipher_phrase.encode('ascii'))
 
     #encode phrase as base32
-    new_phrase = base64.b32encode(new_phrase)
-    print(new_phrase)
+    cipher_b64_b32_phrase = base64.b32encode(cipher_b64_phrase)
+    print(cipher_b64_b32_phrase.encode('ascii'))
 
 
 def decode1(phrase, key):
-    new_phrase = CaesarCipher(phrase, offset=key)
-    print(new_phrase.decoded)
+    #Decrypt ceasar cipher
+    cipher_phrase = CaesarCipher(phrase, offset=key)
+    print(cipher_phrase.decoded)
 
 def decode2(phrase, key):
-    new_phrase = base64.b64decode(phrase)
-    new_phrase = CaesarCipher(new_phrase.decode('utf-8'), offset=key)
-    new_phrase = new_phrase.decoded
-    print(new_phrase)
+    #decrypt b64
+    b64_decrypt = base64.b64decode(phrase.encode('utf-8'))
+    b64_decrypt = b64_decrypt.decode('utf-8')
+
+    #Decrypt ceasar cipher
+    cipher_decrypt = CaesarCipher(b64_decrypt, offset=key)
+    print(cipher_decrypt.decoded)
 
 def decode3(phrase, key):
-    new_phrase = base64.b32decode(phrase)
-    new_phrase = base64.b64decode(new_phrase.decode('utf-8'))
-    new_phrase = CaesarCipher(new_phrase.decode('utf-8'), offset=key)
-    new_phrase = new_phrase.decoded
-    print(new_phrase)
+    #decrypt b32
+    b32_decrypt = base64.b32decode(phrase.encode('utf-8'))
+
+    #decrypt b64
+    b64_decrypt = base64.b64decode(b32_decrypt)
+    b64_decrypt = b64_decrypt.decode('utf-8')
+    
+    #Decrypt ceasar cipher
+    cipher_decrypt = CaesarCipher(b64_decrypt, offset=key)
+    print(cipher_decrypt.decoded)
 
 print("Ceaser Cipher Encoder + Decoder")
 print("-------------------------------")
