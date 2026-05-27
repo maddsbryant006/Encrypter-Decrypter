@@ -29,7 +29,7 @@ def encode2(phrase, key):
     new_phrase = CaesarCipher(phrase, offset=key)
     new_phrase = new_phrase.encoded
 
-    #
+    #encode phrase as base64
     new_phrase = base64.b64encode(new_phrase.encode('ascii'))
     print(new_phrase)
 
@@ -38,8 +38,10 @@ def encode3(phrase, key):
     new_phrase = CaesarCipher(phrase, offset=key)
     new_phrase = new_phrase.encoded
 
-    #
+    #encode phrase as base64
     new_phrase = base64.b64encode(new_phrase.encode('ascii'))
+
+    #encode phrase as base32
     new_phrase = base64.b32encode(new_phrase)
     print(new_phrase)
 
@@ -53,7 +55,6 @@ def decode2(phrase, key):
     new_phrase = CaesarCipher(new_phrase.decode('utf-8'), offset=key)
     new_phrase = new_phrase.decoded
     print(new_phrase)
-
 
 def decode3(phrase, key):
     new_phrase = base64.b32decode(phrase)
